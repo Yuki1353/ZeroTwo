@@ -1,14 +1,14 @@
 {
-      "name": "SaitamaRobot",
+      "name": "ZeroTwo",
       "description": "An Anime themed Telegram group management bot.",
       "keywords": [
          "telegram",
          "anime",
          "group",
          "manager",
-         "Saitama"
+         "Zero Two"
       ],   
-   "repository": "https://github.com/AnimeKaizoku/SaitamaRobot",
+   "repository": "https://github.com/ninja7-bot/ZeroTwo",
    "addons": [
       {
          "options": {
@@ -34,7 +34,7 @@
          "value": ""
       },    
       "SQLALCHEMY_DATABASE_URI": {
-         "description": "Your postgres sql db, empty this field if you dont have one.",
+         "description": "Your postgres sql db, empty this field if you dont have one. Get one from elephant.sql.",
          "required": false,
          "value": "sqldbtype://username:pw@hostname:port/db_name"
       },      
@@ -147,16 +147,6 @@
       "DEL_CMDS": {
          "description": "Set this to True if you want to delete command messages from users who don't have the perms to run that command.",
          "value": "True"
-      },
-      "AI_API_KEY": {
-      "description": "Make your bot talk using Intellivoid's chatbot API, get your key from https://coffeehouse.intellivoid.net/",
-         "required": false,
-         "value": ""
-   },
-      "BAN_STICKER": {
-         "description": "ID of the sticker you want to use when banning people.",
-         "required": false,
-         "value": "CAACAgQAAx0CU_rCTAABAczQXyBOv1TsVK4EfwnkCUT1H0GCkPQAAtwAAwEgTQaYsMtAltpEwhoE"
       }
       
    }

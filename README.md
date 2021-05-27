@@ -14,8 +14,8 @@ News channel as at [Franxx Updates](https://https://t.me/zerotwoupdates)
 
 ## Credits
 The bot is based on the original work done by [PaulSonOfLars](https://github.com/PaulSonOfLars).
-Original Owners: [Anime Kaizoku](https://github.com/AnimeKaizoku)
+<b>Original Owners</b>: [Anime Kaizoku](https://github.com/AnimeKaizoku)
 
-Zero Two has been modified in order to fulfil needs in [AniRena](t.me/AniRena7). This is not an original work and all the credit goes to [Anime Kaizoku](https://github.com/AnimeKaizoku).
+Zero Two has been modified in order to fulfil needs in [AniRena](t.me/AniRena7). This is not an original work and all the credit goes to [Anime Kaizoku](https://github.com/ninja7-bot).
 
 Visit us at [FranXX Health System](https://t.me/FranXXSupport) to add anything if left out or simply submit a pull request on the readme.
