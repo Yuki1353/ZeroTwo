@@ -329,7 +329,7 @@ def manga(update: Update, context: CallbackContext):
         info = json['siteUrl']
         buttons = [[InlineKeyboardButton("More Info", url=info)]]
         image = json.get("bannerImage", False)
-        msg += f"_{json.get('description', None)}_"
+        msg += f"*Synopsis*: _{json.get('description', None)}_"
         if image:
             try:
                 update.effective_message.reply_photo(
@@ -580,9 +580,9 @@ Get information about anime, manga or characters from [AniList](anilist.co).
  • `/manga <manga>`*:* returns information about the manga.
  • `/user <user>`*:* returns information about a MyAnimeList user.
  • `/airing <anime>`*:* returns anime airing info.
+ • `/upcoming`*:* returns a list of new anime in the upcoming seasons.
  
 *Site Search commands:*
- • `/upcoming`*:* returns a list of new anime in the upcoming seasons.
  • `/kaizoku <anime>`*:* search an anime on ninja7-bot.com
  • `/kayo <anime>`*:* search an anime on animekayo.com
  • `/anidl <anime>`*:* search an anime on anidl.org.
