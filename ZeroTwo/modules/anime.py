@@ -329,7 +329,7 @@ def manga(update: Update, context: CallbackContext):
         info = json['siteUrl']
         buttons = [[InlineKeyboardButton("More Info", url=info)]]
         image = json.get("bannerImage", False)
-        msg += f"*Synopsis*: _{json.get('description', None)}_"
+        msg += f"\n\n*Synopsis*: _{json.get('description', None)}_"
         if image:
             try:
                 update.effective_message.reply_photo(
