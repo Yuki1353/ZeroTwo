@@ -7,7 +7,7 @@ from telegram.ext import CommandHandler, MessageHandler, Filters, run_async
 from telegram.utils.helpers import mention_html
 
 import ZeroTwo.modules.sql.blacklist_sql as sql
-from ZeroTwo import dispatcher, LOGGER, REDIS
+from ZeroTwo import dispatcher, LOGGER
 from ZeroTwo.modules.disable import DisableAbleCommandHandler
 from ZeroTwo.modules.helper_funcs.chat_status import user_admin, user_not_admin
 from ZeroTwo.modules.helper_funcs.extraction import extract_text
@@ -16,6 +16,7 @@ from ZeroTwo.modules.log_channel import loggable
 from ZeroTwo.modules.warns import warn
 from ZeroTwo.modules.helper_funcs.string_handling import extract_time
 from ZeroTwo.modules.connection import connected
+from ZeroTwo.modules.sql.approve_sql import is_approved
 
 from ZeroTwo.modules.helper_funcs.alternate import send_message, typing_action
 
@@ -342,14 +343,8 @@ def del_blacklist(update, context):
     to_match = extract_text(message)
     if not to_match:
         return
-
-    chat_id = str(chat.id)[1:] 
-    approve_list = list(REDIS.sunion(f'approve_list_{chat_id}'))
-    target_user = mention_html(user.id, user.first_name)
-    if target_user in approve_list:
+    if is_approved(chat.id, user.id):
         return
-
-
     getmode, value = sql.get_blacklist_setting(chat.id)
 
     chat_filters = sql.get_chat_blacklist(chat.id)
