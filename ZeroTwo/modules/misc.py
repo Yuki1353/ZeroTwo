@@ -99,6 +99,10 @@ Output: `1.0 USD = 75.505 INR`
 *Time*
  • `/time <query>`*:* Gives information about a timezone.
  - *Available queries:* Country Code/Country Name/Timezone Name [Timezones list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+ 
+*Sed*
+ • `s/<text1>/<text2>(/<flag>)`*:* Reply to a message with this to perform a sed operation on that message, replacing all \
+occurrences of 'text1' with 'text2'. [Example](https://t.me/FranXXSupport/2908)!
 """
 
 ECHO_HANDLER = DisableAbleCommandHandler("echo", echo, filters=Filters.group)
