@@ -3,7 +3,7 @@ from typing import Optional, List
 
 from telegram import Message, Chat, Update, Bot, User, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, ChatPermissions
 
-from ZeroTwo import REDIS, TIGERS, WOLVES, dispatcher
+from ZeroTwo import TIGERS, WOLVES, dispatcher
 from ZeroTwo.modules.helper_funcs.chat_status import (
     bot_admin, can_restrict, connection_status, is_user_admin, user_admin,
     user_admin_no_reply)
@@ -18,6 +18,7 @@ from ZeroTwo.modules.helper_funcs.string_handling import extract_time
 from ZeroTwo.modules.log_channel import loggable
 from ZeroTwo.modules.sql import antiflood_sql as sql
 from ZeroTwo.modules.connection import connected
+from ZeroTwo.modules.sql.approve_sql import is_approved
 
 from ZeroTwo.modules.helper_funcs.alternate import send_message, typing_action
 
@@ -30,21 +31,17 @@ def check_flood(update, context) -> str:
     user = update.effective_user  # type: Optional[User]
     chat = update.effective_chat  # type: Optional[Chat]
     msg = update.effective_message  # type: Optional[Message]
-
-    chat_id = str(chat.id)[1:] 
-    approve_list = list(REDIS.sunion(f'approve_list_{chat_id}'))
-    target_user = mention_html(user.id, user.first_name)
-    if target_user in approve_list:
-        return
-
     if not user:  # ignore channels
         return ""
 
     # ignore admins and whitelists
-    if (is_user_admin(chat, user.id) or user.id in WOLVES or user.id in TIGERS):
+    if is_user_admin(chat, user.id) or user.id in WOLVES or user.id in TIGERS:
         sql.update_flood(chat.id, None)
         return ""
-
+    # ignore approved users
+    if is_approved(chat.id, user.id):
+        sql.update_flood(chat.id, None)
+        return
     should_ban = sql.update_flood(chat.id, user.id)
     if not should_ban:
         return ""
