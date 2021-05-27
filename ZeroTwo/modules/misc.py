@@ -95,6 +95,10 @@ Example:
       _OR_
  `/cash 1 usd inr`
 Output: `1.0 USD = 75.505 INR`
+
+*Time*
+ • `/time <query>`*:* Gives information about a timezone.
+ - *Available queries:* Country Code/Country Name/Timezone Name [Timezones list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 """
 
 ECHO_HANDLER = DisableAbleCommandHandler("echo", echo, filters=Filters.group)
@@ -104,7 +108,7 @@ dispatcher.add_handler(ECHO_HANDLER)
 dispatcher.add_handler(MD_HELP_HANDLER)
 
 __mod_name__ = "Extras"
-__command_list__ = ["id", "echo"]
+__command_list__ = ["id", "echo", "time"]
 __handlers__ = [
     ECHO_HANDLER,
     MD_HELP_HANDLER,
