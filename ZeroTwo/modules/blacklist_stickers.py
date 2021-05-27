@@ -13,6 +13,7 @@ from ZeroTwo.modules.helper_funcs.string_handling import extract_time
 
 from ZeroTwo.modules.log_channel import loggable
 from ZeroTwo.modules.warns import warn
+from ZeroTwo.modules.sql.approve_sql import is_approved 
 from telegram import (Chat, Message, ParseMode, Update, User, ChatPermissions)
 from telegram.error import BadRequest
 from telegram.ext import (CallbackContext, CommandHandler, Filters,
@@ -345,10 +346,12 @@ def del_blackliststicker(update: Update, context: CallbackContext):
     chat = update.effective_chat  # type: Optional[Chat]
     message = update.effective_message  # type: Optional[Message]
     user = update.effective_user
+    bot = context.bot
     to_match = message.sticker
     if not to_match:
         return
-    bot = context.bot
+    if is_approved(chat.id, user.id):
+        return
     getmode, value = sql.get_blacklist_setting(chat.id)
 
     chat_filters = sql.get_chat_stickers(chat.id)
