@@ -3,7 +3,7 @@ import re
 from typing import Optional
 
 import telegram
-from ZeroTwo import TIGERS, WOLVES, dispatcher,REDIS
+from ZeroTwo import TIGERS, WOLVES, dispatcher
 from ZeroTwo.modules.disable import DisableAbleCommandHandler
 from ZeroTwo.modules.helper_funcs.chat_status import (bot_admin,
                                                            can_restrict,
@@ -18,6 +18,7 @@ from ZeroTwo.modules.helper_funcs.misc import split_message
 from ZeroTwo.modules.helper_funcs.string_handling import split_quotes
 from ZeroTwo.modules.log_channel import loggable
 from ZeroTwo.modules.sql import warns_sql as sql
+from ZeroTwo.modules.sql.approve_sql import is_approved
 from telegram import (CallbackQuery, Chat, InlineKeyboardButton,
                       InlineKeyboardMarkup, Message, ParseMode, Update, User)
 from telegram.error import BadRequest
@@ -338,18 +339,13 @@ def reply_filter(update: Update, context: CallbackContext) -> str:
     message: Optional[Message] = update.effective_message
     user: Optional[User] = update.effective_user
 
-    chat_id = str(chat.id)[1:] 
-    approve_list = list(REDIS.sunion(f'approve_list_{chat_id}'))
-    target_user = mention_html(user.id, user.first_name)
-    if target_user in approve_list:
-        return
-
-    if not user:  #Ignore channel
+    if not user:  # Ignore channel
         return
 
     if user.id == 777000:
         return
-
+    if is_approved(chat.id, user.id):
+        return
     chat_warn_filters = sql.get_chat_warn_triggers(chat.id)
     to_match = extract_text(message)
     if not to_match:
