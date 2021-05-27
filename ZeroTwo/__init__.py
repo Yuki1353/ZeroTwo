@@ -3,7 +3,6 @@ import os
 import sys
 import time
 import spamwatch
-from redis import StrictRedis
 import telegram.ext as tg
 
 from telethon import TelegramClient
@@ -85,7 +84,6 @@ if ENV:
     CASH_API_KEY = os.environ.get('CASH_API_KEY', None)
     TIME_API_KEY = os.environ.get('TIME_API_KEY', None)
     AI_API_KEY = os.environ.get('AI_API_KEY', None)
-    REDIS_URL = os.environ.get('REDIS_URL', None)
     WALL_API = os.environ.get('WALL_API', None)
     SUPPORT_CHAT = os.environ.get('SUPPORT_CHAT', None)
     SPAMWATCH_SUPPORT_CHAT = os.environ.get('SPAMWATCH_SUPPORT_CHAT', None)
@@ -177,16 +175,8 @@ else:
     sw = spamwatch.Client(SPAMWATCH_API)
 
 
-REDIS = StrictRedis.from_url(REDIS_URL,decode_responses=True)
-try:
-    REDIS.ping()
-    LOGGER.info("Your redis server is now alive!")
-except BaseException:
-    raise Exception("Your redis server is not alive, please check again.")
-
-
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
-telethn = TelegramClient("saitama", API_ID, API_HASH)
+telethn = TelegramClient("ZeroTwo", API_ID, API_HASH)
 dispatcher = updater.dispatcher
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
