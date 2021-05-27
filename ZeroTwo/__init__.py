@@ -81,7 +81,7 @@ if ENV:
     WORKERS = int(os.environ.get('WORKERS', 8))
     ALLOW_EXCL = os.environ.get('ALLOW_EXCL', False)
     CASH_API_KEY = os.environ.get('CASH_API_KEY', None)
-    TIME_API_KEY = os.environ.get('TIME_API_KEY', None))
+    TIME_API_KEY = os.environ.get('TIME_API_KEY', None)
     REDIS_URL = os.environ.get('REDIS_URL', None)
     WALL_API = os.environ.get('WALL_API', None)
     SUPPORT_CHAT = os.environ.get('SUPPORT_CHAT', None)
