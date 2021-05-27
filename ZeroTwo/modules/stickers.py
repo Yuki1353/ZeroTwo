@@ -15,8 +15,6 @@ from telegram.utils.helpers import mention_html
 from ZeroTwo import dispatcher
 from ZeroTwo.modules.disable import DisableAbleCommandHandler
 
-combot_stickers_url = "https://combot.org/telegram/stickers?q="
-
 
 @run_async
 def stickerid(update: Update, context: CallbackContext):
@@ -329,10 +327,13 @@ def kang(update: Update, context: CallbackContext):
         else:
             packs += f"[pack](t.me/addstickers/{packname})"
         msg.reply_text(packs, parse_mode=ParseMode.MARKDOWN)
-    if os.path.isfile("kangsticker.png"):
-        os.remove("kangsticker.png")
-    elif os.path.isfile("kangsticker.tgs"):
-        os.remove("kangsticker.tgs")
+    try:
+        if os.path.isfile("kangsticker.png"):
+            os.remove("kangsticker.png")
+        elif os.path.isfile("kangsticker.tgs"):
+            os.remove("kangsticker.tgs")
+    except:
+        pass
 
 
 def makepack_internal(
