@@ -11,7 +11,7 @@ from ZeroTwo.modules.disable import DisableAbleCommandHandler
 
 sites_list = {
     "Telegram": "https://api.telegram.org",
-    "Kaizoku": "https://ninja7-bot.com",
+    "Kaizoku": "https://animekaizoku.com",
     "Kayo": "https://animekayo.com",
     "Jikan": "https://api.jikan.moe/v3"
 }
