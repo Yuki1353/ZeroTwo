@@ -32,3 +32,4 @@ cachetools
 ujson
 pretty_errors
 humanize
+redis
