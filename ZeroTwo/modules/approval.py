@@ -1,5 +1,5 @@
 import html
-from telegram import Chat, User, ParseMode
+from telegram import Chat, User, ParseMode, Update
 from telegram.error import BadRequest
 from telegram.utils.helpers import mention_html
 from telegram import ParseMode
