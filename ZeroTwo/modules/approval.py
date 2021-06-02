@@ -4,7 +4,7 @@ from telegram.error import BadRequest
 from telegram.utils.helpers import mention_html
 from telegram import ParseMode
 from telegram.ext import (run_async,
-                          Filters, CommandHandler)
+                          Filters, CommandHandler, CallbackContext)
 
 from ZeroTwo import dispatcher, REDIS, DRAGONS
 from ZeroTwo.modules.disable import DisableAbleCommandHandler
