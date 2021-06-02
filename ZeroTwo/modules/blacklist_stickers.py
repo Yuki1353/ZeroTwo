@@ -14,7 +14,6 @@ from ZeroTwo.modules.helper_funcs.string_handling import extract_time
 
 from ZeroTwo.modules.log_channel import loggable
 from ZeroTwo.modules.warns import warn
-from ZeroTwo.modules.sql.approve_sql import is_approved 
 from telegram import (Chat, Message, ParseMode, Update, User, ChatPermissions)
 from telegram.error import BadRequest
 from telegram.ext import (CallbackContext, CommandHandler, Filters,
