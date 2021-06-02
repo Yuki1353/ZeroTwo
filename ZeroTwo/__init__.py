@@ -81,6 +81,7 @@ if ENV:
     BAN_STICKER = os.environ.get('BAN_STICKER',
                                  'CAADAgADOwADPPEcAXkko5EB3YGYAg')
     ALLOW_EXCL = os.environ.get('ALLOW_EXCL', False)
+    REDIS_URL = os.environ.get('REDIS_URL', True)
     CASH_API_KEY = os.environ.get('CASH_API_KEY', None)
     TIME_API_KEY = os.environ.get('TIME_API_KEY', None)
     AI_API_KEY = os.environ.get('AI_API_KEY', None)
@@ -150,6 +151,7 @@ else:
     ALLOW_EXCL = Config.ALLOW_EXCL
     CASH_API_KEY = Config.CASH_API_KEY
     TIME_API_KEY = Config.TIME_API_KEY
+    REDIS_URL = Config.REDIS_URL
     AI_API_KEY = Config.AI_API_KEY
     WALL_API = Config.WALL_API
     SUPPORT_CHAT = Config.SUPPORT_CHAT
@@ -171,6 +173,13 @@ if not SPAMWATCH_API:
     LOGGER.warning("SpamWatch API key missing! recheck your config.")
 else:
     sw = spamwatch.Client(SPAMWATCH_API)
+    
+REDIS = StrictRedis.from_url(REDIS_URL, decode_responses=True)
+try:
+    REDIS.ping()
+    LOGGER.info("Your redis server is now alive!")
+except BaseException:
+    raise Exception("Your redis server is not alive, please check again.")
 
 
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
