@@ -13,7 +13,6 @@ from ZeroTwo.modules.helper_funcs.chat_status import (
     user_admin
 )
 from ZeroTwo.modules.helper_funcs.extraction import extract_user_and_text
-from ZeroTwo.modules.helper_funcs.alternate import typing_action
 from ZeroTwo.modules.log_channel import loggable
 from ZeroTwo.modules.helper_funcs.chat_status import user_admin
 
