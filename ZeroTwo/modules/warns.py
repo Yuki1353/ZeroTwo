@@ -18,7 +18,7 @@ from ZeroTwo.modules.helper_funcs.misc import split_message
 from ZeroTwo.modules.helper_funcs.string_handling import split_quotes
 from ZeroTwo.modules.log_channel import loggable
 from ZeroTwo.modules.sql import warns_sql as sql
-from ZeroTwo import Redis
+from ZeroTwo import REDIS
 from telegram import (CallbackQuery, Chat, InlineKeyboardButton,
                       InlineKeyboardMarkup, Message, ParseMode, Update, User)
 from telegram.error import BadRequest
