@@ -3,6 +3,7 @@ from typing import Optional
 
 import ZeroTwo.modules.sql.blsticker_sql as sql
 from ZeroTwo import LOGGER, dispatcher
+from ZeroTwo import REDIS
 from ZeroTwo.modules.connection import connected
 from ZeroTwo.modules.disable import DisableAbleCommandHandler
 from ZeroTwo.modules.helper_funcs.alternate import send_message
@@ -350,8 +351,13 @@ def del_blackliststicker(update: Update, context: CallbackContext):
     to_match = message.sticker
     if not to_match:
         return
-    if is_approved(chat.id, user.id):
+      
+    chat_id = str(chat.id)[1:] 
+    approve_list = list(REDIS.sunion(f'approve_list_{chat_id}'))
+    target_user = mention_html(user.id, user.first_name)
+    if target_user in approve_list:
         return
+      
     getmode, value = sql.get_blacklist_setting(chat.id)
 
     chat_filters = sql.get_chat_stickers(chat.id)
