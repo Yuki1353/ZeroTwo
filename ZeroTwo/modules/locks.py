@@ -21,7 +21,7 @@ from ZeroTwo.modules.helper_funcs.chat_status import (
 )
 from ZeroTwo.modules.log_channel import loggable
 from ZeroTwo.modules.connection import connected
-from ZeroTwo.modules.sql.approve_sql import is_approved
+from ZeroTwo import REDIS
 
 from ZeroTwo.modules.helper_funcs.alternate import send_message, typing_action
 
@@ -415,8 +415,13 @@ def del_lockables(update, context):
     chat = update.effective_chat  # type: Optional[Chat]
     message = update.effective_message  # type: Optional[Message]
     user = update.effective_user
-    if is_approved(chat.id, user.id):
+    
+    chat_id = str(chat.id)[1:] 
+    approve_list = list(REDIS.sunion(f'approve_list_{chat_id}'))
+    target_user = mention_html(user.id, user.first_name)
+    if target_user in approve_list:
         return
+    
     for lockable, filter in LOCK_TYPES.items():
         if lockable == "rtl":
             if sql.is_locked(chat.id, lockable) and can_delete(
