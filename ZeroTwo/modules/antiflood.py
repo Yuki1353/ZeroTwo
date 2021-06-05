@@ -40,6 +40,15 @@ def check_flood(update, context) -> str:
     if not user:  # ignore channels
         return ""
 
+    # ignore admins and whitelists
+    if (is_user_admin(chat, user.id) or user.id in WOLVES or user.id in TIGERS):
+        sql.update_flood(chat.id, None)
+        return ""
+
+    should_ban = sql.update_flood(chat.id, user.id)
+    if not should_ban:
+        return ""
+
     try:
         getmode, getvalue = sql.get_flood_setting(chat.id)
         if getmode == 1:
@@ -89,6 +98,7 @@ def check_flood(update, context) -> str:
         return "<b>{}:</b>" \
                "\n#INFO" \
                "\nDon't have enough permission to restrict users so automatically disabled anti-flood".format(chat.title)
+
 
 
 @run_async
