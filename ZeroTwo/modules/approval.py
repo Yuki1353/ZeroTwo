@@ -173,7 +173,7 @@ def approved(update, context):
             "No users are are approved in {}.".format(chat.title),
                 parse_mode=ParseMode.HTML
         )
-"""
+
 @run_async
 @bot_admin
 @user_admin
@@ -188,8 +188,8 @@ def unapproveall(update, context):
     message.reply_text(
         "Successully unapproved all users from {}.".format(chat.title)
     )
- """
 
+"""
 @run_async
 def unapproveall(update: Update, context: CallbackContext):
     chat = update.effective_chat
@@ -233,7 +233,7 @@ def unapproveall_btn(update: Update, context: CallbackContext):
               approve_list = list(REDIS.sunion(f'approve_list_{chat_id}')
               for target_user in approve_list:
                                   REDIS.srem(f'approve_list_{chat_id}', target_user)
-                                  message.edit_text("Successfully Unapproved all user in this Chat.")
+              message.edit_text("Successfully Unapproved all user in this Chat.")
                                   return
         if member.status == "administrator":
             query.answer("Only owner of the chat can do this.")
@@ -248,7 +248,9 @@ def unapproveall_btn(update: Update, context: CallbackContext):
             query.answer("Only owner of the chat can do this.")
         if member.status == "member":
             query.answer("You need to be admin to do this.")
-        
+"""
+
+
 __mod_name__ = "Approval"    
 
 __help__ = """ 
