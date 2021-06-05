@@ -59,7 +59,8 @@ def approval(update, context):
 @bot_admin
 @user_admin
 def approve(update, context):
-    chat = update.effective_chat  
+    chat = update.effective_chat
+    chat_title = message.chat.title
     user = update.effective_user 
     message = update.effective_message
     args = context.args 
@@ -112,6 +113,7 @@ def approve(update, context):
 def unapprove(update, context):
     chat = update.effective_chat  
     user = update.effective_user 
+    chat_title = message.chat.title
     message = update.effective_message
     args = context.args 
     user_id, reason = extract_user_and_text(message, args)
@@ -157,6 +159,7 @@ def approved(update, context):
     chat = update.effective_chat 
     user = update.effective_user 
     message = update.effective_message
+    chat_title = message.chat.title
     chat_id = str(chat.id)[1:] 
     approved_list = list(REDIS.sunion(f'approve_list_{chat_id}'))
     approved_list.sort()
@@ -174,12 +177,14 @@ def approved(update, context):
                 parse_mode=ParseMode.HTML
         )
 
+        """
 @run_async
 @bot_admin
 @user_admin
 def unapproveall(update, context):
     chat = update.effective_chat 
     user = update.effective_user 
+    chat_title = message.chat.title
     message = update.effective_message
     chat_id = str(chat.id)[1:] 
     approve_list = list(REDIS.sunion(f'approve_list_{chat_id}'))
@@ -190,6 +195,7 @@ def unapproveall(update, context):
     )
 
 """
+        
 @run_async
 def unapproveall(update: Update, context: CallbackContext):
     chat = update.effective_chat
@@ -227,19 +233,22 @@ def unapproveall_btn(update: Update, context: CallbackContext):
     chat = update.effective_chat
     message = update.effective_message
     member = chat.get_member(query.from_user.id)
+    chat_id = str(chat.id)[1:]
+    approve_list = list(REDIS.sunion(f'approve_list_{chat_id}'))
+    
     if query.data == "unapproveall_user":
         if member.status == "creator" or query.from_user.id in DRAGONS:
-              chat_id = str(chat.id)[1:]
-              approve_list = list(REDIS.sunion(f'approve_list_{chat_id}')
-              for target_user in approve_list:
-                                  REDIS.srem(f'approve_list_{chat_id}', target_user)
-              message.edit_text("Successfully Unapproved all user in this Chat.")
-                                  return
+                  for target_user in approve_list:
+                  REDIS.srem(f'approve_list_{chat_id}', target_user)
+                  message.edit_text("Successfully Unapproved all user in this Chat.")
+                  return
+                  
         if member.status == "administrator":
             query.answer("Only owner of the chat can do this.")
 
         if member.status == "member":
             query.answer("You need to be admin to do this.")
+            
     elif query.data == "unapproveall_cancel":
         if member.status == "creator" or query.from_user.id in DRAGONS:
             message.edit_text("Removing of all approved users has been cancelled.")
@@ -248,7 +257,7 @@ def unapproveall_btn(update: Update, context: CallbackContext):
             query.answer("Only owner of the chat can do this.")
         if member.status == "member":
             query.answer("You need to be admin to do this.")
-"""
+
 
 
 __mod_name__ = "Approval"    
