@@ -229,12 +229,12 @@ def unapproveall_btn(update: Update, context: CallbackContext):
     member = chat.get_member(query.from_user.id)
     if query.data == "unapproveall_user":
         if member.status == "creator" or query.from_user.id in DRAGONS:
-          approve_list = list(REDIS.sunion(f'approve_list_{chat_id}'))
-          for target_user in approve_list:
-            REDIS.srem(f'approve_list_{chat_id}', target_user)     
-            message.edit_text("Successfully Unapproved all user in this Chat.")
-            return
-
+              chat_id = str(chat.id)[1:]
+            approve_list = list(REDIS.sunion(f'approve_list_{chat_id}'))
+            for target_user in approve_list:
+              REDIS.srem(f'approve_list_{chat_id}', target_user)
+              message.edit_text("Successfully Unapproved all user in this Chat.")
+              return
         if member.status == "administrator":
             query.answer("Only owner of the chat can do this.")
 
@@ -267,11 +267,11 @@ APPROVED_HANDLER = DisableAbleCommandHandler("approved", approved, filters=Filte
 UNAPPROVE_ALL_HANDLER = DisableAbleCommandHandler("unapproveall", unapproveall, filters=Filters.group)
 APPROVE_HANDLER = DisableAbleCommandHandler("approve", approve, pass_args=True, filters=Filters.group)
 UNAPPROVE_HANDLER = DisableAbleCommandHandler("unapprove", unapprove, pass_args=True, filters=Filters.group)
-APPROVEL_HANDLER = DisableAbleCommandHandler("approval", approval, pass_args=True, filters=Filters.group)
+APPROVAL_HANDLER = DisableAbleCommandHandler("approval", approval, pass_args=True, filters=Filters.group)
 
 
 dispatcher.add_handler(APPROVED_HANDLER)
 dispatcher.add_handler(UNAPPROVE_ALL_HANDLER)
 dispatcher.add_handler(APPROVE_HANDLER) 
 dispatcher.add_handler(UNAPPROVE_HANDLER) 
-dispatcher.add_handler(APPROVEL_HANDLER)
+dispatcher.add_handler(APPROVAL_HANDLER)
