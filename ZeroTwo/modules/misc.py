@@ -109,6 +109,8 @@ __help__ = """
  • `/react`*:* Reacts with a random reaction 
 *Urban Dictonary:*
  • `/ud <word>`*:* Type the word or expression you want to search use
+*Dictionary:*
+ - `/def <word>`*:* Accesses Dictionary and gives info about the word.
 *Wikipedia:*
  • `/wiki <query>`*:* wikipedia your query
 *Currency converter:* 
