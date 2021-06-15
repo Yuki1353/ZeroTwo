@@ -240,9 +240,9 @@ def unapproveall_btn(update: Update, context: CallbackContext):
     if query.data == "unapproveall_user":
         if member.status == "creator" or query.from_user.id in DRAGONS:
                   for target_user in approve_list:
-                  REDIS.srem(f'approve_list_{chat_id}', target_user)
-                  message.edit_text("Successfully Unapproved all user in this Chat.")
-                  return
+                    REDIS.srem(f'approve_list_{chat_id}', target_user)
+                    message.edit_text("Successfully Unapproved all user in this Chat.")
+                    return
                   
         if member.status == "administrator":
             query.answer("Only owner of the chat can do this.")
