@@ -15,6 +15,7 @@ from telegram.utils.helpers import mention_html
 from ZeroTwo import dispatcher
 from ZeroTwo.modules.disable import DisableAbleCommandHandler
 
+combot_stickers_url = "https://combot.org/telegram/stickers?q="
 
 @run_async
 def stickerid(update: Update, context: CallbackContext):
