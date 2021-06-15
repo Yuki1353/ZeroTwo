@@ -167,7 +167,7 @@ def approved(update, context):
     
     if approved_list: 
             message.reply_text(
-                "The Following Users Are Approved:"
+                "The Following Users Are Approved:\n"
                 "{}".format(approved_list),
                 parse_mode=ParseMode.HTML
             )
