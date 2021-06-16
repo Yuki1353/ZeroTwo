@@ -338,9 +338,9 @@ def kang(update: Update, context: CallbackContext):
                 )
             print(e)
     else:
-        packs = "Please reply to a sticker, or image to kang it!\nOh, by the way. here are your packs:\n"
+        packs = "Please reply to a sticker or image to steal it to your pack!\nOh by the way, here are your packs:\n"
         if packnum > 0:
-            firstpackname = "a" + str(user.id) + "_by_" + context.bot.username
+            firstpackname = "a" + str(user.id) + "_by_" + bot.username
             for i in range(0, packnum + 1):
                 if i == 0:
                     packs += f"[pack](t.me/addstickers/{firstpackname})\n"
@@ -369,7 +369,7 @@ def makepack_internal(
     png_sticker=None,
     tgs_sticker=None,
 ):
-    name = user.first_name
+    name = user.username
     name = name[:50]
     try:
         extra_version = ""
@@ -379,7 +379,7 @@ def makepack_internal(
             success = context.bot.create_new_sticker_set(
                 user.id,
                 packname,
-                f"{name}s kang pack" + extra_version,
+                f"{name}'s Sticker Pack | @MissZeroTwoBot" + extra_version,
                 png_sticker=png_sticker,
                 emojis=emoji,
             )
@@ -387,7 +387,7 @@ def makepack_internal(
             success = context.bot.create_new_sticker_set(
                 user.id,
                 packname,
-                f"{name}s animated kang pack" + extra_version,
+                f"{name}'s Animatied Pack | @MissZeroTwoBot" + extra_version,
                 tgs_sticker=tgs_sticker,
                 emojis=emoji,
             )
