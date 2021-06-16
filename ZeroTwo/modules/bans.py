@@ -392,11 +392,11 @@ __help__ = """
 
 BAN_HANDLER = CommandHandler(["ban", "sban"], ban)
 TEMPBAN_HANDLER = CommandHandler(["tban"], temp_ban)
-EJECT_HANDLER = CommandHandler("eject", eject)
+EJECT_HANDLER = CommandHandler(["eject", "kick"], eject)
 UNBAN_HANDLER = CommandHandler("unban", unban)
 ROAR_HANDLER = CommandHandler("roar", selfunban)
 EJECTME_HANDLER = DisableAbleCommandHandler(
-    "ejectme", ejectme, filters=Filters.group)
+    ["ejectme", "kickme"], ejectme, filters=Filters.group)
 
 dispatcher.add_handler(BAN_HANDLER)
 dispatcher.add_handler(TEMPBAN_HANDLER)
