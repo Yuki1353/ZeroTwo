@@ -77,6 +77,12 @@ def ban(update: Update, context: CallbackContext) -> str:
         else:
             message.reply_text("This user has immunity and cannot be banned.")
             return log_message
+    if message.text.startswith("/s"):
+        silent = True
+        if not can_delete(chat, context.bot.id):
+            return ""
+    else:
+        silent = False
 
     log = (
         f"<b>{html.escape(chat.title)}:</b>\n"
@@ -384,7 +390,7 @@ __help__ = """
  • `/eject <userhandle>`*:* Ejects a user out of the group, (via handle, or reply)
 """
 
-BAN_HANDLER = CommandHandler("ban", ban)
+BAN_HANDLER = CommandHandler(["ban", "sban"], ban)
 TEMPBAN_HANDLER = CommandHandler(["tban"], temp_ban)
 EJECT_HANDLER = CommandHandler("eject", eject)
 UNBAN_HANDLER = CommandHandler("unban", unban)
