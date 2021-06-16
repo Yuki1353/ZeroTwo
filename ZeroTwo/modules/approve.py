@@ -20,9 +20,9 @@ from ZeroTwo.modules.helper_funcs.chat_status import user_admin
 
 @run_async
 def approval(update, context):
+    message = update.effective_message
     chat = update.effective_chat  
     user = update.effective_user 
-    message = update.effective_message
     args = context.args 
     user_id, reason = extract_user_and_text(message, args)
     if not user_id:
@@ -59,10 +59,10 @@ def approval(update, context):
 @bot_admin
 @user_admin
 def approve(update, context):
+    message = update.effective_message
     chat = update.effective_chat
     chat_title = message.chat.title
     user = update.effective_user 
-    message = update.effective_message
     args = context.args 
     user_id, reason = extract_user_and_text(message, args)
     if not user_id:
@@ -111,10 +111,10 @@ def approve(update, context):
 @bot_admin
 @user_admin
 def unapprove(update, context):
+    message = update.effective_message
     chat = update.effective_chat  
     user = update.effective_user 
     chat_title = message.chat.title
-    message = update.effective_message
     args = context.args 
     user_id, reason = extract_user_and_text(message, args)
     if not user_id:
@@ -156,9 +156,9 @@ def unapprove(update, context):
 @bot_admin
 @user_admin
 def approved(update, context):
+    message = update.effective_message
     chat = update.effective_chat 
     user = update.effective_user 
-    message = update.effective_message
     chat_title = message.chat.title
     chat_id = str(chat.id)[1:] 
     approved_list = list(REDIS.sunion(f'approve_list_{chat_id}'))
@@ -198,6 +198,7 @@ def unapproveall(update, context):
         
 @run_async
 def unapproveall(update: Update, context: CallbackContext):
+    message = update.effective_message
     chat = update.effective_chat
     user = update.effective_user
     chat_title = message.chat.title
