@@ -340,7 +340,7 @@ def kang(update: Update, context: CallbackContext):
     else:
         packs = "Please reply to a sticker or image to steal it to your pack!\nOh by the way, here are your packs:\n"
         if packnum > 0:
-            firstpackname = "a" + str(user.id) + "_by_" + bot.username
+            firstpackname = "a" + str(user.id) + "_by_" + context.bot.username
             for i in range(0, packnum + 1):
                 if i == 0:
                     packs += f"[pack](t.me/addstickers/{firstpackname})\n"
