@@ -34,11 +34,11 @@ def define(update: Update, context: CallbackContext):
                 for i in value:
                     defs = i.get("definition")
                     meaning += f"• <i>{defs}</i>\n"
-            message.reply_text(meaning, parse_mode=ParseMode.HTML)
+            msg.reply_text(meaning, parse_mode=ParseMode.HTML)
         else:
             return 
     else:
-        message.reply_text("No results found!")
+        msg.reply_text("No results found!")
 
 
 UD_HANDLER = DisableAbleCommandHandler(["ud"], ud)
