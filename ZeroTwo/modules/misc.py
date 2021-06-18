@@ -74,30 +74,7 @@ def markdown_help(update: Update, context: CallbackContext):
             ]]))
         return
     markdown_help_sender(update)
-    
-    
-#Dictionary module by @TheRealPhoenixBot.
-@run_async
-def define(bot: Bot, update: Update, args):
-    msg = update.effective_message
-    word = " ".join(args)
-    res = requests.get(f"https://googledictionaryapi.eu-gb.mybluemix.net/?define={word}")
-    if res.status_code == 200:
-        info = res.json()[0].get("meaning")
-        if info:
-            meaning = ""
-            for count, (key, value) in enumerate(info.items(), start=1):
-                meaning += f"<b>{count}. {word}</b> <i>({key})</i>\n"
-                for i in value:
-                    defs = i.get("definition")
-                    meaning += f"• <i>{defs}</i>\n"
-            msg.reply_text(meaning, parse_mode=ParseMode.HTML)
-        else:
-            return 
-    else:
-        msg.reply_text("No results found!")
-        
-        
+                
         
 __help__ = """
 *Available commands:*
@@ -132,16 +109,13 @@ occurrences of 'text1' with 'text2'. [Example](https://t.me/FranXXSupport/2908)!
 
 ECHO_HANDLER = DisableAbleCommandHandler("echo", echo, filters=Filters.group)
 MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help)
-DEFINE_HANDLER = DisableAbleCommandHandler(["dict", "def"], define)
 
 dispatcher.add_handler(ECHO_HANDLER)
 dispatcher.add_handler(MD_HELP_HANDLER)
-dispatcher.add_handler(DEFINE_HANDLER)
 
 __mod_name__ = "Extras"
-__command_list__ = ["id", "echo", "time", "dict"]
+__command_list__ = ["id", "echo", "time"]
 __handlers__ = [
     ECHO_HANDLER,
     MD_HELP_HANDLER,
-    DEFINE_HANDLER,
 ]
