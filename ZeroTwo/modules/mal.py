@@ -7,6 +7,7 @@ from telegram import Message, Chat, User, ParseMode, Update, InlineKeyboardMarku
 from telegram.ext import CallbackContext, CommandHandler, Filters, run_async
 
 from ZeroTwo import dispatcher
+from ZeroTwo.modules.disable import DisableAbleCommandHandler
 
 jikan = Jikan()
 
@@ -182,10 +183,10 @@ def manga(update: Update, context: CallbackContext):
         
         msg.reply_text(rep, parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
                 
-ANIME_HANDLER = CommandHandler("manime", anime, pass_args=True)
-CHARACTER_HANDLER = CommandHandler(["mcharacter", "mchar"], character, pass_args=True)
-UPCOMING_HANDLER = CommandHandler("mupcoming", upcoming)
-MANGA_HANDLER = CommandHandler("mmanga", manga, pass_args=True)
+ANIME_HANDLER = DisableAbleCommandHandler("manime", anime, pass_args=True)
+CHARACTER_HANDLER = DisableAbleCommandHandler(["mcharacter", "mchar"], character, pass_args=True)
+UPCOMING_HANDLER = DisableAbleCommandHandler("mupcoming", upcoming)
+MANGA_HANDLER = DisableAbleCommandHandler("mmanga", manga, pass_args=True)
 
 dispatcher.add_handler(ANIME_HANDLER)
 dispatcher.add_handler(CHARACTER_HANDLER)
