@@ -183,7 +183,7 @@ def manga(update: Update, context: CallbackContext):
         msg.reply_text(rep, parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
                 
 ANIME_HANDLER = CommandHandler("manime", anime, pass_args=True)
-CHARACTER_HANDLER = CommandHandler("mcharacter", character, pass_args=True)
+CHARACTER_HANDLER = CommandHandler(["mcharacter", "mchar"], character, pass_args=True)
 UPCOMING_HANDLER = CommandHandler("mupcoming", upcoming)
 MANGA_HANDLER = CommandHandler("mmanga", manga, pass_args=True)
 
