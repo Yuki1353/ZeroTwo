@@ -578,10 +578,15 @@ Get information about anime, manga or characters from [AniList](anilist.co).
  • `/anime <anime>`*:* returns information about the anime.
  • `/character <character>`*:* returns information about the character.
  • `/manga <manga>`*:* returns information about the manga.
- • `/user <user>`*:* returns information about a MyAnimeList user.
  • `/airing <anime>`*:* returns anime airing info.
  • `/upcoming`*:* returns a list of new anime in the upcoming seasons.
  
+ [MyAnimeList](myanimelist.net) Commands 
+ • `/manime <anime>`*:* returns information about the anime.
+ • `/mcharacter <character>`*:* returns information about the character.
+ • `/mmanga <manga>`*:* returns information about the manga.
+ • `/mupcoming`*:* returns a list of new anime in the upcoming seasons.
+ • `/user <user>`*:* returns information about a MyAnimeList user.
 *Site Search commands:*
  • `/kaizoku <anime>`*:* search an anime on ninja7-bot.com
  • `/kayo <anime>`*:* search an anime on animekayo.com
@@ -613,7 +618,7 @@ dispatcher.add_handler(UPCOMING_HANDLER)
 __mod_name__ = "Anime"
 __command_list__ = [
     "anime", "manga", "character", "user", "upcoming", "kaizoku", "airing",
-    "kayo", "anidl",
+    "kayo", "anidl", "manime", "mmanga", "mcharacter", "mupcoming",
 ]
 __handlers__ = [
     ANIME_HANDLER, CHARACTER_HANDLER, MANGA_HANDLER, USER_HANDLER,
