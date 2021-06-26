@@ -587,6 +587,7 @@ Get information about anime, manga or characters from [AniList](anilist.co).
  • `/mmanga <manga>`*:* returns information about the manga.
  • `/mupcoming`*:* returns a list of new anime in the upcoming seasons.
  • `/user <user>`*:* returns information about a MyAnimeList user.
+ 
 *Site Search commands:*
  • `/kaizoku <anime>`*:* search an anime on ninja7-bot.com
  • `/kayo <anime>`*:* search an anime on animekayo.com
