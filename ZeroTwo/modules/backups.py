@@ -11,15 +11,15 @@ from ZeroTwo.__main__ import DATA_IMPORT
 from ZeroTwo.modules.helper_funcs.chat_status import user_admin
 from ZeroTwo.modules.helper_funcs.alternate import typing_action
 
-# from ZeroTwo.modules.rules import get_rules
+from ZeroTwo.modules.rules import get_rules
 import ZeroTwo.modules.sql.rules_sql as rulessql
 
-# from ZeroTwo.modules.sql import warns_sql as warnssql
+from ZeroTwo.modules.sql import warns_sql as warnssql
 import ZeroTwo.modules.sql.blacklist_sql as blacklistsql
 from ZeroTwo.modules.sql import disable_sql as disabledsql
 
-# from ZeroTwo.modules.sql import cust_filters_sql as filtersql
-# import ZeroTwo.modules.sql.welcome_sql as welcsql
+from ZeroTwo.modules.sql import cust_filters_sql as filtersql
+import ZeroTwo.modules.sql.welcome_sql as welcsql
 import ZeroTwo.modules.sql.locks_sql as locksql
 from ZeroTwo.modules.connection import connected
 
@@ -222,7 +222,7 @@ def export_data(update, context):
     # Disabled command
     disabledcmd = list(disabledsql.get_all_disabled(chat_id))
     # Filters (TODO)
-    """
+
 	all_filters = list(filtersql.get_chat_triggers(chat_id))
 	export_filters = {}
 	for filters in all_filters:
@@ -253,9 +253,9 @@ def export_data(update, context):
 		print(content)
 		export_filters[filters] = content
 	print(export_filters)
-	"""
+
     # Welcome (TODO)
-    # welc = welcsql.get_welc_pref(chat_id)
+    welc = welcsql.get_welc_pref(chat_id)
     # Locked
     curr_locks = locksql.get_locks(chat_id)
     curr_restr = locksql.get_restr(chat_id)
@@ -303,7 +303,7 @@ def export_data(update, context):
 
     locks = {"locks": locked_lock, "restrict": locked_restr}
     # Warns (TODO)
-    # warns = warnssql.get_warns(chat_id)
+    warns = warnssql.get_warns(chat_id)
     # Backing up
     backup[chat_id] = {
         "bot": context.bot.id,
@@ -311,10 +311,12 @@ def export_data(update, context):
             "info": {
                 "rules": rules
             },
-            "extra": notes,
+            "extra": notes, export_filters
+	    "welcome": welc
             "blacklist": bl,
             "disabled": disabledcmd,
             "locks": locks,
+	    
         },
     }
     baccinfo = json.dumps(backup, indent=4)
