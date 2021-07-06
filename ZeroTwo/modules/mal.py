@@ -82,7 +82,7 @@ def anime(update: Update, context: CallbackContext):
          ]
     
     
-    msg.reply_text(rep, file=pic, link_preview=False, parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
+    msg.reply_photo(rep, file=pic, link_preview=False, parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
     
 
 @run_async
@@ -117,7 +117,7 @@ def character(update: Update, context: CallbackContext):
             [InlineKeyboardButton("More Information", url=url)]
         ]
         
-        msg.reply_text(rep, file=image, link_preview=False, parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
+        msg.reply_photo(rep, file=image, link_preview=False, parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
         
         
 @run_async
@@ -181,7 +181,7 @@ def manga(update: Update, context: CallbackContext):
             [InlineKeyboardButton("More Information", url=url)]
         ]
         
-        msg.reply_text(rep, file=image, link_preview=False, parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
+        msg.reply_photo(rep, file=image, link_preview=False, parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
                 
 ANIME_HANDLER = DisableAbleCommandHandler("manime", anime, pass_args=True)
 CHARACTER_HANDLER = DisableAbleCommandHandler(["mcharacter", "mchar"], character, pass_args=True)
