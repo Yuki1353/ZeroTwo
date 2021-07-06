@@ -52,7 +52,7 @@ def anime(update: Update, context: CallbackContext):
         studios = studios[:-2]
         duration = anime.get("duration")
         premiered = anime.get("premiered")
-        image_url = anime.get("image_url")
+        pic = anime.get("image_url")
         url = anime.get("url")
         trailer = anime.get("trailer_url")
     else:
@@ -82,7 +82,7 @@ def anime(update: Update, context: CallbackContext):
          ]
     
     
-    msg.reply_text(rep, parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
+    msg.reply_text(rep, file=pic, link_preview=false parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
     
 
 @run_async
@@ -117,7 +117,7 @@ def character(update: Update, context: CallbackContext):
             [InlineKeyboardButton("More Information", url=url)]
         ]
         
-        msg.reply_text(rep, parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
+        msg.reply_text(rep, file=image, link_preview=false, parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
         
         
 @run_async
@@ -181,7 +181,7 @@ def manga(update: Update, context: CallbackContext):
             [InlineKeyboardButton("More Information", url=url)]
         ]
         
-        msg.reply_text(rep, parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
+        msg.reply_text(rep, file=image, link_preview=false, parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
                 
 ANIME_HANDLER = DisableAbleCommandHandler("manime", anime, pass_args=True)
 CHARACTER_HANDLER = DisableAbleCommandHandler(["mcharacter", "mchar"], character, pass_args=True)
