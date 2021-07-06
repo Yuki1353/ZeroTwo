@@ -582,9 +582,9 @@ Get information about anime, manga or characters from [AniList](anilist.co).
  • `/upcoming`*:* returns a list of new anime in the upcoming seasons.
  
  [MyAnimeList](myanimelist.net) Commands 
- • `/mal a <anime>`*:* returns information about the anime.
- • `/mal c <character>`*:* returns information about the character.
- • `/mal m <manga>`*:* returns information about the manga.
+ • `/manime <anime>`*:* returns information about the anime.
+ • `/mchar`*:* returns information about the character.
+ • `/mamanga <manga>`*:* returns information about the manga.
  • `/user <user>`*:* returns information about a MyAnimeList user.
  
 *Site Search commands:*
@@ -618,7 +618,7 @@ dispatcher.add_handler(UPCOMING_HANDLER)
 __mod_name__ = "Anime"
 __command_list__ = [
     "anime", "manga", "character", "user", "upcoming", "kaizoku", "airing",
-    "kayo", "anidl", "mal a", "mal m", "mal c",
+    "kayo", "anidl", "manime", "mmanga", "mchar",
 ]
 __handlers__ = [
     ANIME_HANDLER, CHARACTER_HANDLER, MANGA_HANDLER, USER_HANDLER,
