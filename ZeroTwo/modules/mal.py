@@ -82,7 +82,7 @@ def anime(update: Update, context: CallbackContext):
          ]
     
     
-    msg.reply_text(rep, file=pic, link_preview=False parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
+    msg.reply_text(rep, file=pic, link_preview=False, parse_mode=ParseMode.HTML, reply_markup=InlineKeyboardMarkup(keyb))
     
 
 @run_async
