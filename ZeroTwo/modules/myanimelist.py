@@ -6,7 +6,7 @@ from ZeroTwo import telethn as ZeroTwo
 
 zws = '\u200b'
 
-@ZeroTwo.on(events.NewMessage(pattern=f"^[!/]mal? a? (.+)$"))
+@ZeroTwo.on(events.NewMessage(pattern=f"^[!/]manime (.+)$"))
 async def mal_anime(e):
     await e.edit('Searching...')
     await e.delete()
@@ -35,7 +35,7 @@ async def mal_anime(e):
     text = text + url
     await e.reply(text, file=pic, link_preview=False, parse_mode='html')
 
-@ZeroTwo.on(events.NewMessage(pattern=f"^[!/]mal? m? (.+)$"))
+@ZeroTwo.on(events.NewMessage(pattern=f"^[!/]mmanga (.+)$"))
 async def mal_manga(e):
     await e.edit('Searching...')
     await e.delete()
@@ -66,7 +66,7 @@ async def mal_manga(e):
     text = text + url
     await e.reply(text, file=pic, link_preview=False, parse_mode='html')
 
-@ZeroTwo.on(events.NewMessage(pattern=f"^[!/]mal? c? (.+)$"))
+@ZeroTwo.on(events.NewMessage(pattern=f"^[!/]mchar (.+)$"))
 async def mal_character(e):
     await e.edit('Searching...')
     await e.delete()
