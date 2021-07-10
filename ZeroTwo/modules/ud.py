@@ -26,13 +26,13 @@ def define(update: Update, context: CallbackContext):
     word = msg.text[len('/def '):]
     res = requests.get(f"https://api.dictionaryapi.dev/api/v2/entries/en_US/{word}")
     if res.status_code == 200:
-        info = res.json()[0].get("meaning")
+        info = res.json()[0].get("meanings")
         if info:
             meaning = ""
             for count, (key, value) in enumerate(info.items(), start=1):
                 meaning += f"<b>{count}. {word}</b> <i>({key})</i>\n"
                 for i in value:
-                    defs = i.get("definition")
+                    defs = i.get("definitions")
                     meaning += f"• <i>{defs}</i>\n"
             msg.reply_text(meaning, parse_mode=ParseMode.HTML)
         else:
