@@ -32,7 +32,7 @@ def define(update: Update, context: CallbackContext):
             for count, (key, value) in enumerate(info.items(), start=1):
                 meaning += f"<b>{count}. {word}</b> <i>({key})</i>\n"
                 for i in value:
-                    defs = i.get("definitions")
+                    defs = i.get("definition")
                     meaning += f"• <i>{defs}</i>\n"
             msg.reply_text(meaning, parse_mode=ParseMode.HTML)
         else:
