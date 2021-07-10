@@ -1,5 +1,5 @@
 import requests
-from ZeroTwo import dispatcher
+from ZeroTwo import dispatcher, DICT_API
 from ZeroTwo.modules.disable import DisableAbleCommandHandler
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext, run_async
@@ -24,7 +24,7 @@ def ud(update: Update, context: CallbackContext):
 def define(update: Update, context: CallbackContext):
     msg = update.effective_message
     word = msg.text[len('/def '):]
-    res = requests.get(f"https://googledictionaryapi.eu-gb.mybluemix.net/?define={word}")
+    res = requests.get(f"https://api.dictionaryapi.dev/api/v2/entries/en_US/{word}")
     if res.status_code == 200:
         info = res.json()[0].get("meaning")
         if info:
