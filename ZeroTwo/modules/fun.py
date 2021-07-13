@@ -206,6 +206,17 @@ def tng(update, context):
     update.effective_message.reply_photo(TNG, caption=number,
                         parse_mode=ParseMode.MARKDOWN)    
 
+@run_async
+def wyr(update, context):
+    wyr = random.choice(fun_strings.WYR_STRINGS)
+    options = ["🔴", "🔵"]
+    message = context.bot.send_poll(
+        update.effective_chat.id.
+        wyr,
+        options,
+        is_anonymous=False,
+        allow_multiple_answers=False
+    )
 
 __help__ = """
 ⎔ *Fun Commands*
@@ -247,12 +258,16 @@ TRUTH_HANDLER = DisableAbleCommandHandler("truth", truth)
 DARE_HANDLER = DisableAbleCommandHandler("dare", dare)
 TORD_HANDLER = DisableAbleCommandHandler("tord", tord)
 TNG_HANDLER = DisableAbleCommandHandler("tng", tng)
+WYR_HANDLER = DisableAbleCommandHandler("wyr", wyr)
 
+# Games Handlers
 dispatcher.add_handler(TRUTH_HANDLER)
 dispatcher.add_handler(DARE_HANDLER)
 dispatcher.add_handler(TORD_HANDLER)
-
 dispatcher.add_handler(TNG_HANDLER)
+dispatcher.add_handler(WYR_HANDLER)
+
+# Fun Handlers
 dispatcher.add_handler(SANITIZE_HANDLER)
 dispatcher.add_handler(RUNS_HANDLER)
 dispatcher.add_handler(SLAP_HANDLER)
@@ -271,10 +286,10 @@ dispatcher.add_handler(TABLE_HANDLER)
 __mod_name__ = "Fun & Games"
 __command_list__ = [
     "runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide",
-    "table", "pat", "sanitize", "truth", "dare", "tord", "tng",
+    "table", "pat", "sanitize", "truth", "dare", "tord", "tng", "wyr",
 ]
 __handlers__ = [
     RUNS_HANDLER, SLAP_HANDLER, PAT_HANDLER, ROLL_HANDLER, TOSS_HANDLER,
     SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER, DECIDE_HANDLER, TABLE_HANDLER,
-    SANITIZE_HANDLER, TRUTH_HANDLER, DARE_HANDLER, TORD_HANDLER, TNG_HANDLER,
+    SANITIZE_HANDLER, TRUTH_HANDLER, DARE_HANDLER, TORD_HANDLER, TNG_HANDLER, WYR_HANDLER,
 ]
