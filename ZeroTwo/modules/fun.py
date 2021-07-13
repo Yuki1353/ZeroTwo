@@ -212,7 +212,7 @@ def wyr(update, context):
     wyr = random.choice(fun_strings.WYR_STRINGS)
     options = ["🔴", "🔵"]
     message = context.bot.send_poll(
-        update.effective_chat.id.
+        update.effective_chat.id,
         wyr,
         options,
         is_anonymous=False,
