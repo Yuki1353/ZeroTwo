@@ -208,6 +208,7 @@ def tng(update, context):
 
 @run_async
 def wyr(update, context):
+    chat = update.effective_chat
     wyr = random.choice(fun_strings.WYR_STRINGS)
     options = ["🔴", "🔵"]
     message = context.bot.send_poll(
