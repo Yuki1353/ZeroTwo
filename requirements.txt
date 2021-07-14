@@ -17,7 +17,8 @@ aiohttp>=2.2.5
 Pillow>=4.2.0
 CurrencyConverter
 #googletrans
-google_trans_new
+#google_trans_new
+googletrans==3.1.0a0
 jikanpy
 speedtest-cli
 regex
