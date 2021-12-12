@@ -1,5 +1,5 @@
 ![Rin Tohsaka](https://telegra.ph/file/49a50f870040b5731dd13.jpg)
-# Zero Two 
+# Rin Tohsaka
 
 A modular Telegram Python bot running on python3 with a sqlalchemy database.
 
