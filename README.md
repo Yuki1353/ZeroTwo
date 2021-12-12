@@ -1,4 +1,4 @@
-![Zero Two](https://telegra.ph/file/0d9da2a52ed3d2b5c6722.jpg)
+![Rin Tohsaka](https://telegra.ph/file/49a50f870040b5731dd13.jpg)
 # Zero Two 
 
 A modular Telegram Python bot running on python3 with a sqlalchemy database.
