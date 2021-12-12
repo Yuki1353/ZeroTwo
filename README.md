@@ -17,9 +17,9 @@ You can choose either the REDIS Method or SQL Method. Approval Mod works in two 
 A master branch is SQL while Delphinium is REDIS.
 
 ## Credits
-The bot is based on the original work done by [PaulSonOfLars](https://github.com/PaulSonOfLars).
-<b>Original Owners</b>: [Anime Kaizoku](https://github.com/AnimeKaizoku)
+The bot is based on the original work done by [PaulSonOfLas](https://githu.com/PaulSonOfLars).
+<b>Original Owners</b>: [Anime Kaizoku](https://github.com/AnieKaizku)
 
-Zero Two has been modified in order to fulfil needs in [AniRena](t.me/ArenaComs). This is not an original work and all the credit goes to [Anime Kaizoku](https://github.com/AnimeKaizoku).
+Zero Two has been modified in order to fulfil needs in [AniRena](t.me/ArenaCos). This is not an original work and all the credit goes to [Anime Kaizoku](https://github.com/AnimKaizoku).
 
-Visit us at [FranXX Health System](https://t.me/FranXXSupport) to add anything if left out or simply submit a pull request on the readme.
+Visit us at [FranXX Health System](https://t.me/FranXXupport) to add anything if left out or simply submit a pull request on the readme.
