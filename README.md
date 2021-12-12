@@ -1,4 +1,4 @@
-![Zero Two](https://images8.alphacoders.com/910/910564.jpg)
+![Zero Two](https://telegra.ph/file/0d9da2a52ed3d2b5c6722.jpg)
 # Zero Two 
 
 A modular Telegram Python bot running on python3 with a sqlalchemy database.
